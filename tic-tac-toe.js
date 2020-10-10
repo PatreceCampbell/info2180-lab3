@@ -1,12 +1,36 @@
+const X_CLASS = 'x';
+const O_CLASS = 'O';
+
 onload=function(){ 
-    var childLen = document.getElementById("board").children.length; 
-    var x=0; 
-    while (x <= childLen)
-    { 
-        document.getElementById('board').getElementsByTagName('div')[x].className+='square';
-        x += 1;
+    
+    var childrenBoard = document.querySelectorAll('#board div');
+    const childLen = childrenBoard.length;
+    var pos = 0;
+    var current = X_CLASS;
+    var trackState = [];
+
+    while (pos <= childLen-1){ 
+        var cells = childrenBoard[pos].className+='square';
+        childrenBoard[pos].addEventListener('click', handleClicked, { once: true});    
+        pos += 1;
     }
-}
 
 
-
+    function handleClicked(clickedEvent){
+        trackState.push(current);
+        console.log(trackState);
+        console.log("Clicked");
+                    
+        if (current == X_CLASS){ 
+            current= O_CLASS; 
+            this.innerHTML='X';
+            this.classList.add('X'); 
+        }
+        else{
+               
+            current= X_CLASS;
+            this.innerHTML='O';
+            this.classList.add('O');        
+        }   
+    }      
+}   
