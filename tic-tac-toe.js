@@ -12,6 +12,8 @@ onload=function(){
     while (pos <= childLen-1){ 
         var cells = childrenBoard[pos].className+='square';
         childrenBoard[pos].addEventListener('click', handleClicked, { once: true});    
+        var hovover = childrenBoard[pos].addEventListener('mouseover', hoverOver);
+        var hovout  = childrenBoard[pos].addEventListener('mouseout', hoverOut);
         pos += 1;
     }
 
@@ -32,5 +34,18 @@ onload=function(){
             this.innerHTML='O';
             this.classList.add('O');        
         }   
-    }      
+    } 
+
+    
+    function hoverOver(hoverEvent){
+        this.classList.add('hover');
+        console.log("Hovered over");
+    }
+    
+
+    function hoverOut(hoveroutEvent){
+            this.classList.remove('hover');
+            console.log("Hovered out");
+    }
+    
 }   
